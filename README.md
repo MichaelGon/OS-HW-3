@@ -19,12 +19,29 @@ docker-compose up -d
 
 Для добавления пользователя (POST) запустите команду:
 ```
-curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d '{"name": "Name Surname"}'
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Иван"}' http://localhost:3000/users
 ```
 
 #### 3. Получения списка пользователей (GET)
 
 Для получения списка пользователей (GET) запустите команду:
 ```
-curl http://localhost:5001/users
+curl http://localhost:3000/users
+```
+
+Для запуска кластера:
+```
+minikube start
+```
+Для создания отдельного пода:
+```
+kubectl apply -f ./kubernetes/db-app-pod.yaml
+```
+Для создания deployment:
+```
+kubectl apply -f ./kubernetes/db-app-deployment.yaml 
+```
+Для создания сервиса:
+```
+kubectl expose deployment db-app --type=ClusterIP --port=3002 
 ```
