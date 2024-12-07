@@ -7,6 +7,19 @@ metadata:
 spec:
   containers:
     - name: db-app
-      image: mikhailgon/db-app:latest
+      image: mikhailgon/app:latest
       ports:
         - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-app-service
+spec:
+  selector:
+    app: app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: NodePort
